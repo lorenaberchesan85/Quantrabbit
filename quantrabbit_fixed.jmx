@@ -10,7 +10,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="company" elementType="Argument">
             <stringProp name="Argument.name">company</stringProp>
-            <stringProp name="Argument.value">Quantrabbit</stringProp>
+            <stringProp name="Argument.value">quantrabbit</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="city" elementType="Argument">
@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="country" elementType="Argument">
             <stringProp name="Argument.name">country</stringProp>
-            <stringProp name="Argument.value">România</stringProp>
+            <stringProp name="Argument.value">Romania</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -63,7 +63,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/v4/clean/</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/clean/</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -75,15 +75,6 @@
             <stringProp name="TestPlan.comments">Delete</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">apikey</stringProp>
-                  <stringProp name="Header.value">3868877-2ef0-8763-a772-183db0c515cf</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
             <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
@@ -303,7 +294,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
-              <stringProp name="HTTPSampler.domain">ejobs.ro</stringProp>
+              <stringProp name="HTTPSampler.domain">www.ejobs.ro</stringProp>
               <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
@@ -384,7 +375,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="json" enabled="true">
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                 <stringProp name="RegexExtractor.refname">json</stringProp>
-                <stringProp name="RegexExtractor.regex">companies:({.*}),serverRendered</stringProp>
+                <stringProp name="RegexExtractor.regex">companies:({.*})</stringProp>
                 <stringProp name="RegexExtractor.template">$1$</stringProp>
                 <stringProp name="RegexExtractor.default"></stringProp>
                 <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -527,35 +518,23 @@ for(int i = 0;i&lt;match.getCount();i++)
 {
 	switch(match[i][1])
 	{
-		case &quot;g&quot;:
+		case &quot;b&quot;:
 			city += &apos;&quot;București&quot;&apos;;
 			break;
-		case &quot;d&quot;:
+		case &quot;c&quot;:
 			city += &apos;&quot;Arad&quot;&apos;;
 			break;
-		case &quot;i&quot;:
+		case &quot;J&quot;:
 			city += &apos;&quot;Cluj-Napoca&quot;&apos;;
 			break;
-		case &quot;O&quot;:
-			city += &apos;&quot;Turda&quot;&apos;;
-			break;
-		case &quot;G&quot;:
+		case &quot;i&quot;:
 			city += &apos;&quot;Iași&quot;&apos;;
 			break;
-		case &quot;fz&quot;:
+		case &quot;K&quot;:
 			city += &apos;&quot;Timișoara&quot;&apos;;
 			break;
-		case &quot;fA&quot;:
-			city += &apos;&quot;Cămpia Turzii&quot;&apos;;
-			break;
-		case &quot;fB&quot;:
-			city += &apos;&quot;Gherla&quot;&apos;;
-			break;
-		case &quot;fC&quot;:
-			city += &apos;&quot;Florești&quot;&apos;;
-			break;
 		default:
-			log.warn(&quot;Unknown City. Contact scrapper author&quot;);
+			log.warn(&quot;Unknown City&quot;+ match[i][1]+&quot;. Contact scrapper author&quot;);
 	}
 }
 String this_job = &apos;{&quot;id&quot;:&quot;&apos;+id+&apos;&quot;,&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;city&quot;:&apos;+city+&apos;}&apos;;
@@ -622,7 +601,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-            <stringProp name="HTTPSampler.path">/v4/update/</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/update/</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -659,10 +638,6 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
                 <elementProp name="Accept-Language" elementType="Header">
                   <stringProp name="Header.name">Accept-Language</stringProp>
                   <stringProp name="Header.value">en-US,en;q=0.9,ro-RO;q=0.8,ro;q=0.7</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">apikey</stringProp>
-                  <stringProp name="Header.value">3868877-2ef0-8763-a772-183db0c515cf</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
